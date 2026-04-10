@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — Metis Consulting Group</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --green-darkest:#04342C;--green-dark:#0F6E56;--green-mid:#1D9E75;
+  --green-light:#5DCAA5;--green-pale:#9FE1CB;--green-bg:#E1F5EE;
+  --purple-dark:#3C3489;--purple-bg:#EEEDFE;
+  --blue-dark:#0C447C;--blue-bg:#E6F1FB;
+  --amber-dark:#854F0B;--amber-bg:#FAEEDA;
+  --coral-dark:#993C1D;--coral-bg:#FAECE7;
+  --text-primary:#1a1a18;--text-secondary:#52524e;--text-muted:#888780;
+  --border:rgba(0,0,0,0.1);--border-med:rgba(0,0,0,0.16);
+  --bg-primary:#ffffff;--bg-secondary:#f7f6f2;
+  --radius-md:8px;--radius-lg:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.7;color:var(--text-primary);background:var(--bg-primary);}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;border-bottom:0.5px solid var(--border);background:var(--bg-primary);position:sticky;top:0;z-index:100;}
+.logo{font-size:18px;font-weight:500;color:var(--text-primary);letter-spacing:-0.3px;text-decoration:none;}
+.logo span{color:var(--green-mid);}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary);}
+.nav-cta{font-size:13px;padding:6px 16px;border:0.5px solid var(--border-med);border-radius:var(--radius-md);color:var(--text-primary);cursor:pointer;background:transparent;}
+.nav-cta:hover{background:var(--bg-secondary);}
+
+/* PAGE HEADER */
+.page-header{padding:3.5rem 2.5rem 2.5rem;max-width:700px;border-bottom:0.5px solid var(--border);}
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:0.08em;color:var(--green-mid);text-transform:uppercase;margin-bottom:0.75rem;}
+.page-header h1{font-size:34px;font-weight:500;letter-spacing:-0.5px;line-height:1.2;margin-bottom:1rem;}
+.page-header p{font-size:16px;color:var(--text-secondary);}
+
+/* GROUP NAV */
+.group-nav{display:flex;border-bottom:0.5px solid var(--border);overflow-x:auto;background:var(--bg-primary);position:sticky;top:57px;z-index:90;scrollbar-width:none;}
+.group-nav::-webkit-scrollbar{display:none;}
+.gnav-item{font-size:13px;padding:0.85rem 1.5rem;color:var(--text-secondary);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;flex-shrink:0;user-select:none;}
+.gnav-item:hover{color:var(--text-primary);}
+.gnav-item.active{color:var(--green-dark);border-bottom-color:var(--green-mid);font-weight:500;}
+
+/* SERVICE GROUPS */
+.service-group{border-bottom:0.5px solid var(--border);}
+.group-header{display:flex;align-items:flex-start;justify-content:space-between;padding:2.5rem 2.5rem 0;cursor:pointer;gap:2rem;}
+.group-header:hover .group-title{color:var(--green-dark);}
+.group-header-left{flex:1;}
+.group-tag{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--radius-md);margin-bottom:0.75rem;}
+.tag-teal{background:var(--green-bg);color:var(--green-dark);}
+.tag-purple{background:var(--purple-bg);color:var(--purple-dark);}
+.tag-blue{background:var(--blue-bg);color:var(--blue-dark);}
+.tag-amber{background:var(--amber-bg);color:var(--amber-dark);}
+.tag-coral{background:var(--coral-bg);color:var(--coral-dark);}
+.group-title{font-size:22px;font-weight:500;letter-spacing:-0.3px;margin-bottom:0.6rem;transition:color 0.15s;}
+.group-summary{font-size:14px;color:var(--text-secondary);line-height:1.65;max-width:580px;}
+.toggle-btn{width:32px;height:32px;border-radius:50%;border:0.5px solid var(--border-med);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.25rem;font-size:20px;font-weight:300;color:var(--text-secondary);line-height:1;transition:transform 0.25s,background 0.15s;}
+.toggle-btn:hover{background:var(--bg-secondary);}
+.toggle-btn.open{transform:rotate(45deg);}
+
+.group-body{padding:0 2.5rem;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.25s ease;}
+.group-body.open{max-height:2000px;padding:1.5rem 2.5rem 2.5rem;}
+
+/* CAPABILITIES GRID */
+.cap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:0.25rem;}
+.cap-card{background:var(--bg-primary);padding:1.35rem 1.5rem;}
+.cap-card h3{font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:0.4rem;}
+.cap-card p{font-size:13px;color:var(--text-secondary);line-height:1.65;margin-bottom:0.8rem;}
+.tech-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.tech-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg-secondary);color:var(--text-muted);border:0.5px solid var(--border);}
+
+/* AI CALLOUT */
+.ai-callout{background:var(--bg-secondary);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.35rem;margin-top:1rem;display:flex;gap:1rem;align-items:flex-start;}
+.ai-callout-dot{width:8px;height:8px;border-radius:50%;background:var(--green-mid);flex-shrink:0;margin-top:6px;}
+.ai-callout h4{font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:0.2rem;}
+.ai-callout p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0;}
+
+/* GOVERNANCE BANNER */
+.gov-banner{background:var(--green-darkest);padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;}
+.gov-banner h2{font-size:22px;font-weight:500;color:var(--green-pale);margin-bottom:0.75rem;letter-spacing:-0.3px;}
+.gov-banner .gov-body{font-size:14px;color:var(--green-light);line-height:1.75;}
+.gov-pillars{display:flex;flex-direction:column;gap:1rem;}
+.gov-pillar{display:flex;gap:12px;align-items:flex-start;}
+.gpillar-dot{width:5px;height:5px;border-radius:50%;background:var(--green-light);flex-shrink:0;margin-top:7px;}
+.gpillar-strong{font-size:13px;font-weight:500;color:#E1F5EE;display:block;margin-bottom:1px;}
+.gpillar-text{font-size:13px;color:var(--green-light);line-height:1.55;}
+
+/* FOOTER CTA */
+.cta-strip{padding:2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border);gap:2rem;flex-wrap:wrap;}
+.cta-strip h3{font-size:18px;font-weight:500;margin-bottom:0.25rem;}
+.cta-strip p{font-size:14px;color:var(--text-secondary);}
+.btn-primary{padding:10px 22px;background:var(--green-dark);color:#E1F5EE;border:none;border-radius:var(--radius-md);font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:var(--green-darkest);}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  nav{padding:0.85rem 1.25rem;}
+  .nav-links{display:none;}
+  .page-header{padding:2rem 1.25rem 1.5rem;}
+  .page-header h1{font-size:26px;}
+  .group-header{padding:1.75rem 1.25rem 0;}
+  .group-body.open{padding:1rem 1.25rem 2rem;}
+  .cap-grid{grid-template-columns:1fr;}
+  .gov-banner{grid-template-columns:1fr;gap:2rem;padding:2rem 1.25rem;}
+  .cta-strip{padding:2rem 1.25rem;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Metis <span>Consulting</span></a>
+  <div class="nav-links">
+    <a href="#" class="active">Services</a>
+    <a href="#">AI Capabilities</a>
+    <a href="#">Case Studies</a>
+    <a href="#">About</a>
+  </div>
+  <button class="nav-cta">Get in touch</button>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">What we do</div>
+  <h1>Capabilities built over years.<br>Ready for what's next.</h1>
+  <p>From bespoke marketing platforms and secure enterprise integrations to modern AI-enabled delivery — Metis brings technical depth and business judgment to every engagement.</p>
+</div>
+
+<div class="group-nav">
+  <div class="gnav-item active" onclick="scrollToGroup('g1',this)">Digital Platforms</div>
+  <div class="gnav-item" onclick="scrollToGroup('g2',this)">Integration &amp; Identity</div>
+  <div class="gnav-item" onclick="scrollToGroup('g3',this)">Data &amp; Infrastructure</div>
+  <div class="gnav-item" onclick="scrollToGroup('g4',this)">AI &amp; Intelligent Systems</div>
+  <div class="gnav-item" onclick="scrollToGroup('g5',this)">Advisory &amp; Delivery</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     GROUP 1 — DIGITAL PLATFORMS
+════════════════════════════════════════════════ -->
+<div class="service-group" id="g1">
+  <div class="group-header" onclick="toggleGroup('g1')">
+    <div class="group-header-left">
+      <div class="group-tag tag-teal">Digital Platforms</div>
+      <div class="group-title">Bespoke applications built around your business</div>
+      <div class="group-summary">We design and build custom digital platforms — from marketing and communications tools to internal applications — tailored to your exact operational needs, not retrofitted from off-the-shelf templates.</div>
+    </div>
+    <button class="toggle-btn open" id="btn-g1" aria-label="Toggle section">+</button>
+  </div>
+  <div class="group-body open" id="body-g1">
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <h3>E-Marketing &amp; MarTech Platforms</h3>
+        <p>Bespoke marketing platforms with targeted segmentation, personalization engines, message tracking and reporting, opt-in management, and full anti-spam compliance built in from the ground up.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Market segmentation</span>
+          <span class="tech-tag">Personalization</span>
+          <span class="tech-tag">Opt-in management</span>
+          <span class="tech-tag">Anti-spam compliance</span>
+          <span class="tech-tag">Tracking &amp; reporting</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Bulk Email Infrastructure</h3>
+        <p>Reliable, high-volume email delivery built on robust infrastructure. We configure and manage Postfix, Exchange, and custom MTAs with full deliverability hardening — whitelisting, bounce management, DKIM, SPF, and virtual MTA setups.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Postfix</span>
+          <span class="tech-tag">Exchange</span>
+          <span class="tech-tag">DKIM / SPF</span>
+          <span class="tech-tag">Bounce management</span>
+          <span class="tech-tag">Virtual MTAs</span>
+          <span class="tech-tag">Whitelisting</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Intranet &amp; Internal Applications</h3>
+        <p>Internal platforms that people actually use — from company intranets and knowledge bases to operational tools and staff portals. Built with the right balance of structure, flexibility, and governance.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Intranet design</span>
+          <span class="tech-tag">Staff portals</span>
+          <span class="tech-tag">Knowledge management</span>
+          <span class="tech-tag">Workflow tools</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Content Management</h3>
+        <p>Design-ready and fully custom CMS implementations — from WordPress and Wix for content-driven sites, to headless CMS architectures for more complex publishing and localization requirements.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">WordPress</span>
+          <span class="tech-tag">Wix</span>
+          <span class="tech-tag">Headless CMS</span>
+          <span class="tech-tag">Localization</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="ai-callout">
+      <div class="ai-callout-dot"></div>
+      <div>
+        <h4>AI-accelerated delivery</h4>
+        <p>We now use Claude and other LLMs to move from brief to working prototype significantly faster — without skipping architecture, testing, or governance. The quality bar is higher; the time to value is shorter.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     GROUP 2 — INTEGRATION & IDENTITY
+════════════════════════════════════════════════ -->
+<div class="service-group" id="g2">
+  <div class="group-header" onclick="toggleGroup('g2')">
+    <div class="group-header-left">
+      <div class="group-tag tag-purple">Integration &amp; Identity</div>
+      <div class="group-title">Trusted APIs and secure system connectivity</div>
+      <div class="group-summary">We build the integration layer that keeps your systems talking — reliably, securely, and in ways that are auditable and maintainable. From CRM and ERP to legacy systems and modern cloud APIs.</div>
+    </div>
+    <button class="toggle-btn" id="btn-g2" aria-label="Toggle section">+</button>
+  </div>
+  <div class="group-body" id="body-g2">
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <h3>Integration Solutions</h3>
+        <p>End-to-end integration across web applications, CRM, ERP, and legacy systems — designed for distributed and remote environments. We build to last, not just to connect.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">REST / GraphQL APIs</span>
+          <span class="tech-tag">CRM &amp; ERP integration</span>
+          <span class="tech-tag">Legacy modernization</span>
+          <span class="tech-tag">Event-driven architecture</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Trusted API Design &amp; Governance</h3>
+        <p>We don't just build APIs — we design them to be secure, versioned, and trustworthy. Rate limiting, authentication, documentation, and change management are built in from day one.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">API design</span>
+          <span class="tech-tag">Rate limiting</span>
+          <span class="tech-tag">Versioning</span>
+          <span class="tech-tag">API documentation</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Single Sign-On &amp; Identity</h3>
+        <p>Secure, standards-based identity management across your application estate. We implement and maintain SSO using OAuth, OpenID Connect, SAML, and JWT — simplifying access without compromising control.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">OAuth 2.0</span>
+          <span class="tech-tag">OpenID Connect</span>
+          <span class="tech-tag">SAML</span>
+          <span class="tech-tag">JWT</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>MCP for Internal Tool Access</h3>
+        <p>We expose your internal APIs as Model Context Protocol (MCP) servers — enabling AI assistants like GPT and Claude to make real, auditable tool calls against your systems without custom middleware or security compromise.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">MCP protocol</span>
+          <span class="tech-tag">AI tool access</span>
+          <span class="tech-tag">Audit logging</span>
+          <span class="tech-tag">Access control</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     GROUP 3 — DATA & INFRASTRUCTURE
+════════════════════════════════════════════════ -->
+<div class="service-group" id="g3">
+  <div class="group-header" onclick="toggleGroup('g3')">
+    <div class="group-header-left">
+      <div class="group-tag tag-amber">Data &amp; Infrastructure</div>
+      <div class="group-title">Secure management of data and business-critical assets</div>
+      <div class="group-summary">Data is your most valuable asset and your biggest liability. We help organizations store, govern, and use it safely — with security audits, performance tuning, and the compliance frameworks to back it up.</div>
+    </div>
+    <button class="toggle-btn" id="btn-g3" aria-label="Toggle section">+</button>
+  </div>
+  <div class="group-body" id="body-g3">
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <h3>Database Management</h3>
+        <p>Database architecture, scaling strategy, performance tuning, and security audits across relational and non-relational systems. We take ownership of the data layer — so you're never caught out by growth or compliance requirements.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">PostgreSQL / MySQL</span>
+          <span class="tech-tag">Performance tuning</span>
+          <span class="tech-tag">Security audits</span>
+          <span class="tech-tag">Scaling strategy</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Data Governance &amp; Compliance</h3>
+        <p>Policies, classification frameworks, retention schedules, and access controls — built to satisfy regulators and protect the business. We make governance practical, not just present.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Data classification</span>
+          <span class="tech-tag">Retention policy</span>
+          <span class="tech-tag">Access control</span>
+          <span class="tech-tag">Regulatory compliance</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Vector Databases &amp; Semantic Search</h3>
+        <p>We build and manage vector stores that power semantic search and retrieval-augmented generation (RAG) — making your data findable by meaning, not just keywords. A core building block of effective AI systems.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">pgvector</span>
+          <span class="tech-tag">Pinecone</span>
+          <span class="tech-tag">Weaviate</span>
+          <span class="tech-tag">RAG pipelines</span>
+          <span class="tech-tag">Embeddings</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Business-Critical Asset Security</h3>
+        <p>Secure management of the assets your business depends on — credentials, certificates, configuration, secrets management, and disaster recovery planning. The fundamentals done properly, under governance.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Secrets management</span>
+          <span class="tech-tag">Certificate management</span>
+          <span class="tech-tag">Disaster recovery</span>
+          <span class="tech-tag">Security hardening</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     GROUP 4 — AI & INTELLIGENT SYSTEMS
+════════════════════════════════════════════════ -->
+<div class="service-group" id="g4">
+  <div class="group-header" onclick="toggleGroup('g4')">
+    <div class="group-header-left">
+      <div class="group-tag tag-blue">AI &amp; Intelligent Systems</div>
+      <div class="group-title">Modern AI, applied with discipline and governance</div>
+      <div class="group-summary">We bring the same rigor to AI adoption that we've always brought to enterprise change — moving fast where it's safe to, and slowing down where governance and accountability matter.</div>
+    </div>
+    <button class="toggle-btn" id="btn-g4" aria-label="Toggle section">+</button>
+  </div>
+  <div class="group-body" id="body-g4">
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <h3>AI Strategy &amp; Readiness</h3>
+        <p>Honest assessment of where AI will genuinely help your organization — and where the risk isn't worth it yet. We build the business case, identify the use cases, and design the adoption roadmap.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Use case identification</span>
+          <span class="tech-tag">Readiness assessment</span>
+          <span class="tech-tag">Roadmap design</span>
+          <span class="tech-tag">Business case</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>AI-Assisted Development</h3>
+        <p>We use Claude and other LLMs to turn well-scoped briefs into working code faster — while keeping humans accountable for architecture, testing, and sign-off. Speed without loss of control.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Claude / GPT</span>
+          <span class="tech-tag">Rapid prototyping</span>
+          <span class="tech-tag">Code review</span>
+          <span class="tech-tag">Human-in-the-loop</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Enterprise AI Integration</h3>
+        <p>Connecting AI tools to your real systems — via MCP, APIs, and RAG pipelines — so assistants and copilots have accurate, scoped access to the right information and actions, not the whole estate.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">MCP servers</span>
+          <span class="tech-tag">RAG / vector search</span>
+          <span class="tech-tag">Copilot integration</span>
+          <span class="tech-tag">Access scoping</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Responsible AI &amp; Governance</h3>
+        <p>Policies, risk frameworks, audit trails, and model governance — aligned to your regulatory context. We help you build the structures that let you say yes to AI confidently.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">AI risk assessment</span>
+          <span class="tech-tag">Audit &amp; explainability</span>
+          <span class="tech-tag">Model governance</span>
+          <span class="tech-tag">Supplier due diligence</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     GROUP 5 — ADVISORY & DELIVERY
+════════════════════════════════════════════════ -->
+<div class="service-group" id="g5">
+  <div class="group-header" onclick="toggleGroup('g5')">
+    <div class="group-header-left">
+      <div class="group-tag tag-coral">Advisory &amp; Delivery</div>
+      <div class="group-title">Strategy and program delivery you can rely on</div>
+      <div class="group-summary">The consulting foundation that underpins everything else — business architecture, program governance, change management, and technology advisory grounded in real organizational experience.</div>
+    </div>
+    <button class="toggle-btn" id="btn-g5" aria-label="Toggle section">+</button>
+  </div>
+  <div class="group-body" id="body-g5">
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <h3>Business Architecture</h3>
+        <p>Operating model design, capability mapping, and strategic alignment across complex organizations — ensuring your technology and change programs serve real business goals.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Operating model design</span>
+          <span class="tech-tag">Capability mapping</span>
+          <span class="tech-tag">Strategic alignment</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Program &amp; Project Delivery</h3>
+        <p>End-to-end program management with embedded governance, risk management, and assurance. We deliver on time and on budget — and we tell you early when something needs to change.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Program governance</span>
+          <span class="tech-tag">Risk management</span>
+          <span class="tech-tag">Assurance</span>
+          <span class="tech-tag">On-time delivery</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Technology Advisory</h3>
+        <p>Architecture review, vendor selection, and technology strategy grounded in real-world constraints — not vendor brochures. We help you make the right call and explain it to your board.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Architecture review</span>
+          <span class="tech-tag">Vendor selection</span>
+          <span class="tech-tag">Technology strategy</span>
+        </div>
+      </div>
+
+      <div class="cap-card">
+        <h3>Change Management</h3>
+        <p>People-centered change that sticks — stakeholder engagement, communications planning, training, and adoption support. The human side of delivery, taken as seriously as the technical.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Stakeholder engagement</span>
+          <span class="tech-tag">Communications</span>
+          <span class="tech-tag">Training &amp; adoption</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     GOVERNANCE BANNER
+════════════════════════════════════════════════ -->
+<div class="gov-banner">
+  <div>
+    <h2>The thread running through everything</h2>
+    <p class="gov-body">Every capability we offer — from email infrastructure to AI deployment — is delivered with the same commitment to governance, security, and accountability. That's not a compliance checkbox. It's how we've earned the trust of clients who can't afford to get it wrong.</p>
+  </div>
+  <div class="gov-pillars">
+    <div class="gov-pillar">
+      <div class="gpillar-dot"></div>
+      <div>
+        <span class="gpillar-strong">Governance by design</span>
+        <span class="gpillar-text">Audit trails, access controls, and accountability structures built in from the start.</span>
+      </div>
+    </div>
+    <div class="gov-pillar">
+      <div class="gpillar-dot"></div>
+      <div>
+        <span class="gpillar-strong">Security-first delivery</span>
+        <span class="gpillar-text">Every platform, API, and integration hardened against the threats that matter.</span>
+      </div>
+    </div>
+    <div class="gov-pillar">
+      <div class="gpillar-dot"></div>
+      <div>
+        <span class="gpillar-strong">Honest advisory</span>
+        <span class="gpillar-text">We tell you what will work, what won't, and what the risks are — before you commit.</span>
+      </div>
+    </div>
+    <div class="gov-pillar">
+      <div class="gpillar-dot"></div>
+      <div>
+        <span class="gpillar-strong">Human accountability</span>
+        <span class="gpillar-text">Technology decisions always have a person behind them. We make sure it stays that way.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER CTA
+════════════════════════════════════════════════ -->
+<div class="cta-strip">
+  <div>
+    <h3>Not sure which capabilities apply to you?</h3>
+    <p>Most engagements draw on several areas. Tell us what you're trying to achieve and we'll map the right approach.</p>
+  </div>
+  <a href="mailto:info@metisconsultinggroup.com" class="btn-primary">Start a conversation</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
+<script>
+function toggleGroup(id) {
+  var body = document.getElementById('body-' + id);
+  var btn  = document.getElementById('btn-'  + id);
+  var open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  btn.classList.toggle('open',  !open);
+}
+
+function scrollToGroup(id, el) {
+  document.querySelectorAll('.gnav-item').forEach(function(n){ n.classList.remove('active'); });
+  el.classList.add('active');
+  var target = document.getElementById(id);
+  var offset = 57 + 41; // nav height + group-nav height
+  var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+  // Auto-open the group if it isn't already
+  var body = document.getElementById('body-' + id);
+  var btn  = document.getElementById('btn-'  + id);
+  if (!body.classList.contains('open')) {
+    body.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+// Highlight group-nav item on scroll
+window.addEventListener('scroll', function() {
+  var groups = ['g1','g2','g3','g4','g5'];
+  var offset = 57 + 41 + 20;
+  var current = groups[0];
+  groups.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= offset) { current = id; }
+  });
+  document.querySelectorAll('.gnav-item').forEach(function(n, i) {
+    n.classList.toggle('active', groups[i] === current);
+  });
+});
+</script>
+
+</body>
+</html>
