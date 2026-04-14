@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Metis Consulting Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --g-950:#051a0e;--g-900:#082214;--g-800:#0f3520;--g-700:#1a5232;
+  --g-600:#21633d;--g-500:#2d7d4f;--g-400:#3a9b64;--g-300:#5db88a;
+  --g-200:#96d4b4;--g-100:#d4ede0;--g-50:#edf7f1;
+  --white:#fff;--off-white:#f8faf8;
+  --gray-900:#111827;--gray-700:#374151;--gray-600:#4b5563;
+  --gray-500:#6b7280;--gray-300:#d1d5db;--gray-200:#e5e7eb;--gray-100:#f3f4f6;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+body{background:var(--white);color:var(--gray-900);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:300;background:var(--g-900);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;border-bottom:1px solid rgba(255,255,255,.07);}
+.logo-link img{height:40px;width:auto;display:block;}
+.nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;}
+.nav-links a{font-size:12px;font-weight:500;color:rgba(255,255,255,.55);
+  letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;
+  border-radius:6px;transition:background .15s,color .15s;}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06);}
+.nav-links a.active{color:var(--g-200);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-tagline{font-size:11px;color:rgba(255,255,255,.3);font-style:italic;white-space:nowrap;}
+.nav-cta{font-size:12px;font-weight:600;padding:8px 20px;background:var(--g-500);
+  color:var(--white);border:none;border-radius:7px;cursor:pointer;
+  letter-spacing:.04em;text-transform:uppercase;transition:background .2s;}
+.nav-cta:hover{background:var(--g-400);}
+
+/* PAGE HEADER */
+.page-header{background:var(--g-800);padding:4.5rem 3rem 4rem;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(-35deg,transparent 0,transparent 60px,rgba(255,255,255,.018) 60px,rgba(255,255,255,.018) 61px);}
+.page-header::after{content:'';position:absolute;bottom:-80px;right:-60px;
+  width:400px;height:350px;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(45,125,79,.22) 0%,transparent 70%);}
+.page-header-inner{max-width:1280px;margin:0 auto;position:relative;z-index:1;}
+.ph-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g-300);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;}
+.ph-eyebrow-line{width:24px;height:2px;background:var(--g-400);}
+.page-header h1{font-size:54px;font-weight:800;color:var(--white);
+  letter-spacing:-2px;line-height:1.08;margin-bottom:1.25rem;}
+.page-header h1 span{color:var(--g-300);}
+.page-header p{font-size:16.5px;color:rgba(255,255,255,.58);max-width:640px;line-height:1.78;}
+
+/* CONTENT */
+.content{max-width:1280px;margin:0 auto;padding:5rem 3rem;}
+
+/* MISSION SECTION */
+.mission{display:grid;grid-template-columns:1fr 1fr;gap:5rem;
+  padding-bottom:5rem;border-bottom:1px solid var(--gray-200);margin-bottom:5rem;}
+.mission-eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--g-500);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.mission-eyebrow::before{content:'';width:16px;height:2px;background:var(--g-400);}
+.mission h2{font-size:34px;font-weight:800;letter-spacing:-1px;
+  color:var(--gray-900);line-height:1.18;margin-bottom:1.25rem;}
+.mission-body{font-size:15.5px;color:var(--gray-600);line-height:1.85;}
+.mission-body p+p{margin-top:1.25rem;}
+.mission-right{display:flex;flex-direction:column;gap:1.5rem;padding-top:.5rem;}
+.mission-callout{background:var(--g-50);border:1px solid var(--g-100);
+  border-left:3px solid var(--g-400);border-radius:10px;padding:1.5rem 1.625rem;}
+.mission-callout p{font-size:14px;color:var(--g-700);line-height:1.72;font-style:italic;}
+.mission-callout .attr{font-size:12px;color:var(--g-500);font-weight:600;
+  margin-top:.75rem;font-style:normal;letter-spacing:.04em;}
+
+/* CERTIFICATIONS */
+.certs-section{margin-bottom:5rem;}
+.section-eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--g-500);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.section-eyebrow::before{content:'';width:16px;height:2px;background:var(--g-400);}
+.section-h2{font-size:32px;font-weight:800;letter-spacing:-.8px;
+  color:var(--gray-900);margin-bottom:.75rem;}
+.section-lead{font-size:15px;color:var(--gray-500);line-height:1.75;
+  max-width:600px;margin-bottom:2.5rem;}
+.cert-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.cert-card{border:1px solid var(--gray-200);border-radius:16px;
+  padding:2.25rem 2rem;display:flex;flex-direction:column;gap:1.25rem;
+  transition:box-shadow .25s,transform .2s;}
+.cert-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.08);transform:translateY(-2px);}
+.cert-medallion{width:56px;height:56px;border-radius:50%;
+  background:var(--g-700);border:3px solid var(--g-300);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:var(--g-200);letter-spacing:-.3px;}
+.cert-card h3{font-size:18px;font-weight:700;letter-spacing:-.3px;color:var(--gray-900);}
+.cert-card p{font-size:14px;color:var(--gray-500);line-height:1.75;flex:1;}
+.cert-badge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;
+  background:var(--g-50);color:var(--g-700);border:1px solid var(--g-100);
+  width:fit-content;}
+
+/* DEI SECTION */
+.dei-section{background:var(--gray-900);border-radius:20px;
+  padding:4rem;margin-bottom:5rem;position:relative;overflow:hidden;}
+.dei-section::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(-35deg,transparent 0,transparent 80px,rgba(255,255,255,.015) 80px,rgba(255,255,255,.015) 81px);}
+.dei-inner{position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.dei-eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--g-300);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.dei-eyebrow::before{content:'';width:16px;height:2px;background:var(--g-400);}
+.dei-section h2{font-size:30px;font-weight:800;color:var(--white);
+  letter-spacing:-.5px;line-height:1.2;margin-bottom:1.25rem;}
+.dei-section h3{font-size:16px;font-weight:600;color:var(--white);
+  margin-bottom:1rem;line-height:1.4;}
+.dei-body{font-size:14.5px;color:rgba(255,255,255,.55);line-height:1.82;}
+.dei-body p+p{margin-top:1rem;}
+
+/* REPORTS SECTION */
+.reports-section{margin-bottom:5rem;}
+.report-list{display:flex;flex-direction:column;gap:12px;margin-top:2rem;}
+.report-item{display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  border:1px solid var(--gray-200);border-radius:12px;padding:1.25rem 1.5rem;
+  transition:border-color .2s,box-shadow .2s;}
+.report-item:hover{border-color:var(--g-300);box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.report-meta{}
+.report-title{font-size:15px;font-weight:600;color:var(--gray-900);margin-bottom:3px;}
+.report-sub{font-size:13px;color:var(--gray-500);}
+.report-dl{display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;color:var(--g-600);white-space:nowrap;
+  padding:8px 16px;border-radius:7px;border:1.5px solid var(--g-200);
+  transition:border-color .2s,color .2s,background .15s;}
+.report-dl:hover{border-color:var(--g-400);color:var(--g-500);background:var(--g-50);}
+
+/* VIDEO SECTION */
+.video-section{background:var(--g-50);border:1px solid var(--g-100);
+  border-radius:16px;padding:3rem;margin-bottom:5rem;
+  display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.video-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--g-500);margin-bottom:.75rem;}
+.video-section h3{font-size:22px;font-weight:700;color:var(--gray-900);
+  letter-spacing:-.3px;margin-bottom:.75rem;}
+.video-section p{font-size:14px;color:var(--gray-500);line-height:1.75;}
+.video-btn{display:flex;align-items:center;gap:10px;
+  padding:14px 24px;background:var(--g-700);color:var(--white);
+  border-radius:10px;font-size:14px;font-weight:600;white-space:nowrap;
+  flex-shrink:0;transition:background .2s,transform .15s;}
+.video-btn:hover{background:var(--g-600);transform:translateY(-1px);}
+.video-btn svg{flex-shrink:0;}
+
+/* QUOTE */
+.quote-section{padding:4rem 0;border-top:1px solid var(--gray-200);
+  text-align:center;margin-bottom:5rem;}
+blockquote{font-size:28px;font-weight:700;color:var(--gray-900);
+  letter-spacing:-.5px;line-height:1.35;font-style:italic;margin-bottom:1.25rem;
+  max-width:700px;margin:0 auto 1.25rem;}
+.quote-attr{font-size:13px;color:var(--gray-500);font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;}
+
+/* CTA STRIP */
+.cta-strip{padding:4rem 0 0;
+  display:flex;align-items:center;justify-content:space-between;gap:3rem;
+  flex-wrap:wrap;border-top:1px solid var(--gray-200);}
+.cta-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--g-500);margin-bottom:.75rem;}
+.cta-strip h3{font-size:28px;font-weight:800;letter-spacing:-.5px;
+  margin-bottom:.6rem;line-height:1.15;}
+.cta-strip p{font-size:15px;color:var(--gray-500);max-width:480px;line-height:1.7;}
+.cta-btn-group{display:flex;gap:12px;align-items:center;flex-shrink:0;}
+.btn-primary{display:inline-block;padding:14px 28px;background:var(--g-700);
+  color:var(--white);border-radius:8px;font-size:14px;font-weight:600;
+  white-space:nowrap;border:none;cursor:pointer;transition:background .2s,transform .15s;}
+.btn-primary:hover{background:var(--g-600);transform:translateY(-1px);}
+.btn-secondary{display:inline-block;padding:14px 28px;background:transparent;
+  color:var(--gray-700);border-radius:8px;font-size:14px;font-weight:500;
+  white-space:nowrap;border:1.5px solid var(--gray-300);transition:border-color .2s,color .2s;}
+.btn-secondary:hover{border-color:var(--g-400);color:var(--g-600);}
+
+/* FOOTER */
+.site-footer{background:var(--g-950);border-top:1px solid rgba(255,255,255,.06);
+  padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.25rem;}
+.footer-logo img{height:32px;width:auto;display:block;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-size:11.5px;color:rgba(255,255,255,.35);
+  letter-spacing:.07em;text-transform:uppercase;transition:color .15s;}
+.footer-links a:hover{color:rgba(255,255,255,.7);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .cert-cards{grid-template-columns:1fr 1fr;}
+  .dei-inner{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .navbar{padding:0 1.5rem;}
+  .nav-links,.nav-tagline{display:none;}
+  .page-header{padding:3rem 1.5rem;}
+  .page-header h1{font-size:38px;}
+  .content{padding:3.5rem 1.5rem;}
+  .mission{grid-template-columns:1fr;gap:3rem;}
+  .cert-cards{grid-template-columns:1fr;}
+  .dei-section{padding:2.5rem 1.75rem;}
+  .video-section{grid-template-columns:1fr;gap:1.5rem;padding:2rem;}
+  .cta-strip{flex-direction:column;align-items:flex-start;}
+  .site-footer{padding:1.5rem;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo-link">
+    <img src="https://metiscgc.wpengine.com/wp-content/uploads/2020/09/metisConsultingGroupLogo.jpg"
+         alt="Metis Consulting Group">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="capabilities.html">Capabilities</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-tagline">"Trust that is earned."</span>
+    <button class="nav-cta" onclick="location.href='contact.html'">Get in touch</button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="ph-eyebrow"><div class="ph-eyebrow-line"></div>For Purpose, For Real</div>
+    <h1>A business built on<br><span>accountability.</span></h1>
+    <p>Metis is a New York Public Benefit Corporation — and a Certified B Corporation and Disability-Owned Business Enterprise. We don't just consult on governance; we practice it ourselves.</p>
+  </div>
+</header>
+
+<div class="content">
+
+  <!-- MISSION -->
+  <div class="mission">
+    <div>
+      <div class="mission-eyebrow">Our mission</div>
+      <h2>Purpose-driven by charter, not just by aspiration.</h2>
+      <div class="mission-body">
+        <p>Metis was founded on the belief that technology consulting should be held to the same standards of transparency and accountability that we demand of any governance-focused engagement. That means being honest about what works and what doesn't, building things that last, and never optimizing our advice for our own convenience.</p>
+        <p>As a Public Benefit Corporation, we are legally chartered to pursue positive social outcomes alongside financial performance. As a Certified B Corporation and Disability-Owned Business Enterprise, our commitments are independently verified — not self-reported.</p>
+        <p>Contact us today to learn how Metis can help you with your organizational development and technology infrastructure needs while also meeting your supplier diversity goals.</p>
+      </div>
+    </div>
+    <div class="mission-right">
+      <div class="mission-callout">
+        <p>"The time is always right to do what is right."</p>
+        <div class="attr">— Martin Luther King, Jr.</div>
+      </div>
+      <div class="mission-callout" style="border-left-color:var(--g-300);">
+        <p>"Trust that is earned." — This is not just our tagline. It is the operating principle behind every engagement, every recommendation, and every deliverable we produce.</p>
+        <div class="attr">— Metis Consulting Group</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="certs-section">
+    <div class="section-eyebrow">Our certifications</div>
+    <h2 class="section-h2">Verified commitments, independently confirmed.</h2>
+    <p class="section-lead">We believe accountability requires external validation. Our certifications aren't marketing — they're legally enforceable or independently audited standards we maintain year over year.</p>
+    <div class="cert-cards">
+      <div class="cert-card">
+        <div class="cert-medallion">B</div>
+        <h3>Certified B Corporation</h3>
+        <p>B Corp certification is the highest verified standard of social and environmental performance, transparency, and legal accountability. To earn certification, we completed a rigorous assessment covering our impact on workers, community, environment, and customers.</p>
+        <div class="cert-badge">Verified by B Lab</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-medallion" style="font-size:10px;letter-spacing:0;">DOBE</div>
+        <h3>Disability-Owned Business Enterprise</h3>
+        <p>DOBE certification through Disability:IN recognizes businesses that are majority-owned and operated by people with disabilities. Our certification supports supplier diversity programs and inclusive procurement at organizations seeking to meet disability inclusion goals.</p>
+        <div class="cert-badge">Certified by Disability:IN</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-medallion" style="font-size:11px;">PBC</div>
+        <h3>New York Public Benefit Corporation</h3>
+        <p>As a New York Public Benefit Corporation, we have a legal obligation to consider the interests of all stakeholders — not just shareholders — in our decision-making. Our purpose-driven mission is embedded in our corporate charter, not just our mission statement.</p>
+        <div class="cert-badge">Incorporated in New York State</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEI STATEMENT -->
+  <div class="dei-section">
+    <div class="dei-inner">
+      <div>
+        <div class="dei-eyebrow">Our commitment</div>
+        <h2>Statement of Diversity, Equity, and Inclusion</h2>
+        <h3>Metis Consulting Group is firmly committed to creating an accessible, welcoming, inclusive, and respectful environment.</h3>
+      </div>
+      <div>
+        <div class="dei-body">
+          <p>We recognize that oppressions based on race, ethnicity, creed (e.g., religion, belief system, or absence thereof), class, gender, sexual orientation, gender orientation, immigration status, country of origin, religion, mental health status, age, and ability are systemic in our society. These form a system of interlocking oppressions that are mutually reinforcing and cannot be addressed in isolation.</p>
+          <p>We acknowledge and appreciate the whole humanness of our employees, guests, clients, vendors, and partners, and value our interdependence. Our perspective is that best practices ensuring fairness and inclusiveness are a moving target, and therefore we embrace a methodology of constant re-evaluation of context, impact, and inclusiveness of policies, procedures, and business practices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNUAL REPORTS -->
+  <div class="reports-section">
+    <div class="section-eyebrow">Transparency</div>
+    <h2 class="section-h2">Annual reports &amp; filings</h2>
+    <p class="section-lead">View and download our Public Benefit Corporation filings and annual reports below. We publish these as part of our commitment to transparency and accountability.</p>
+    <div class="report-list">
+      <div class="report-item">
+        <div class="report-meta">
+          <div class="report-title">Metis 2025 New York Public Benefit Corporation Section 1708 Filing Report</div>
+          <div class="report-sub">Annual benefit corporation report · April 2025</div>
+        </div>
+        <a href="https://www.metisconsultinggroup.com/wp-content/uploads/2025/04/Metis-2025_Section-1708-Benefit-Corp-Filing-Requirement_no-comp_updated.pdf"
+           class="report-dl" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-section">
+    <div>
+      <div class="video-eyebrow">B Corp movement</div>
+      <h3>Building inclusive economies — a keynote by Jay Coen Gilbert</h3>
+      <p>Co-Founder of B Lab, speaking at the B Corp Summit in Amsterdam, September 2019. A compelling look at how business can be a force for good — and what it takes to build economies that work for everyone.</p>
+    </div>
+    <a href="https://youtu.be/YuyffQ9ekq4" target="_blank" rel="noopener" class="video-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      Watch keynote
+    </a>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <blockquote>"The time is always right to do what is right."</blockquote>
+    <div class="quote-attr">— Martin Luther King, Jr.</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div>
+      <div class="cta-eyebrow">Work with us</div>
+      <h3>Supplier diversity goals?<br>We can help you meet them.</h3>
+      <p>As a DOBE-certified and B Corp-certified firm, we help clients fulfill supplier diversity commitments while delivering exceptional results.</p>
+    </div>
+    <div class="cta-btn-group">
+      <a href="contact.html" class="btn-primary">Schedule a consultation →</a>
+      <a href="services.html" class="btn-secondary">Our services</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <a href="index.html" class="footer-logo">
+    <img src="https://metiscgc.wpengine.com/wp-content/uploads/2020/09/metisConsultingGroupLogo.jpg"
+         alt="Metis Consulting Group">
+  </a>
+  <p class="footer-copy">© 2025 Metis Consulting Group. All rights reserved. New York Public Benefit Corporation.</p>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="mailto:info@metisconsultinggroup.com">info@metisconsultinggroup.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
